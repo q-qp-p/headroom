@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -31,7 +31,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -1159,6 +1159,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#claude-code-with-headroom-compression-validated" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Claude Code with Headroom compression (validated)
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2048,6 +2059,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#claude-code-with-headroom-compression-validated" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Claude Code with Headroom compression (validated)
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2122,6 +2144,22 @@ attached service accounts in that order. See:</p>
 <p>The Python proxy preserves caller-supplied Google bearer auth. The native Rust
 proxy path additionally resolves GCP ADC and injects the bearer token for the
 Anthropic publisher route.</p>
+<h2 id="claude-code-with-headroom-compression-validated">Claude Code with Headroom compression (validated)<a class="headerlink" href="#claude-code-with-headroom-compression-validated" title="Permanent link">&para;</a></h2>
+<p>To run <strong>Claude Code</strong> against Claude-on-Vertex <strong>with Headroom compressing the
+context</strong>, use the dedicated, tested runbook:</p>
+<p>➡️ <strong><a href="https://headroom-docs.vercel.app/docs/claude-code-vertex">Claude Code + Vertex + Headroom</a></strong></p>
+<p>Short version: run Claude Code in <strong>normal Anthropic mode</strong> (<code>ANTHROPIC_BASE_URL</code>
+→ the proxy) and start the proxy with <code>--backend litellm-vertex_ai --region &lt;loc&gt;
+--code-aware</code>; Headroom holds the GCP ADC creds and calls Vertex.</p>
+<blockquote>
+<p>⚠️ Do <strong>not</strong> put Claude Code into Vertex mode and point <code>ANTHROPIC_VERTEX_BASE_URL</code>
+at the proxy. Claude Code's client-side model probe rejects any non-Google Vertex
+URL before sending a request ("model … not available on your vertex deployment"),
+so the proxy is never reached. Use the Anthropic-mode runbook above instead.</p>
+<p>⚠️ Two easy-to-miss requirements: <code>pip install "google-cloud-aiplatform&gt;=1.38"</code>
+(LiteLLM <code>vertex_ai</code> provider) and the <code>--code-aware</code> flag (code compression is
+off by default). Without them you get a 500 or <code>tokens_saved: 0</code>.</p>
+</blockquote>
 
 
 
@@ -2217,7 +2255,7 @@ Anthropic publisher route.</p>
       <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "content.code.annotate", "content.tabs.link", "navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "navigation.indexes", "search.highlight", "search.suggest", "search.share", "toc.follow", "header.autohide"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>
